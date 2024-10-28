@@ -1,0 +1,20 @@
+#version
+version: '3'
+
+services:  
+#main app
+  web:  
+    build: .  
+    ports:  
+      - 5000:5000  
+#database
+  db:  
+    image: "mysql"  
+    environment:  
+      MYSQL_ROOT_PASSWORD: root  
+    volumes:  
+#you must have  mysql-init folder and put all .sql in that folder for data initiation
+      - ./mysql-init:/docker-entrypoint-initdb.d/  
+#name of volume
+volumes:  
+  dbdata:
